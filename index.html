@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="set-Name" placeholder="Enter a location for Weather ...">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-danger" id="Search">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img id="City-weather-image" src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 id = "City-Name">Dhaka</h1>
+            <h3><span id="City-Temp">38.06</span>&deg;C</h3>
+            <h1 class="lead" id="City-Weather">Clouds</h1>
+        </div>
+    </div>
+s
+    <script>
+        document.getElementById('Search').addEventListener("click",function()
+         {
+          var X = document.getElementById('set-Name').value.toString();
+          
+          fetch(`http://api.openweathermap.org/data/2.5/weather?q=${X}&appid=990675a32a8faf22d8f68f0319193b36&units=metric`)
+          .then(res => res.json())
+          .then(data =>{
+            console.log(data);
+            const City = data
+            const CityName = City.name;
+            const CityTemp = City.main.temp;
+            const CityWeather = City.weather[0].main;
+            const image = City.weather[0].icon;
+            
+            console.log(CityName,CityTemp,CityWeather);
+            document.getElementById('City-Name').innerText = CityName;
+            document.getElementById('City-Temp').innerText = CityTemp;
+            document.getElementById('City-Weather').innerText = CityWeather;
+            document.getElementById('City-weather-image').src = `https://openweathermap.org/img/wn/${image}.png`;
+        })
+        })
+   
+    
+    </script>
+
+</body>
+
+</html>
