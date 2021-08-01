@@ -41,7 +41,7 @@ s
          {
           var X = document.getElementById('set-Name').value.toString();
           
-          fetch(`http://api.openweathermap.org/data/2.5/weather?q=${X}&appid=990675a32a8faf22d8f68f0319193b36&units=metric`)
+          fetch(`https://api.openweathermap.org/data/2.5/weather?q=${X}&appid=990675a32a8faf22d8f68f0319193b36&units=metric`)
           .then(res => res.json())
           .then(data =>{
             console.log(data);
